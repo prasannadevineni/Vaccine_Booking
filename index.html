@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaccine Booking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>💉 Vaccine Booking System</h1>
+
+    <form id="bookingForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="text" id="idproof" placeholder="ID Proof Number" required>
+
+        <select id="center" required>
+            <option value="">Select Center</option>
+            <option>City Hospital</option>
+            <option>Community Health Center</option>
+            <option>Primary Health Care</option>
+        </select>
+
+        <input type="date" id="date" required>
+
+        <select id="slot" required>
+            <option value="">Select Time Slot</option>
+            <option>9:00 AM - 10:00 AM</option>
+            <option>10:00 AM - 11:00 AM</option>
+            <option>11:00 AM - 12:00 PM</option>
+        </select>
+
+        <button type="submit">Book Vaccine</button>
+    </form>
+
+    <input type="text" id="search" placeholder="🔍 Search by name">
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Center</th>
+                <th>Date</th>
+                <th>Slot</th>
+                <th>Status</th>
+                <th>Certificate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="bookingList"></tbody>
+    </table>
+
+    <button class="clear-btn" onclick="clearAll()">Clear All Data</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

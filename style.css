@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+}
+
+.container {
+    width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+form button {
+    grid-column: span 3;
+}
+
+input, select, button {
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #d4edda;
+}
+
+.status-btn {
+    background: #17a2b8;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.cert-btn {
+    background: green;
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+}
+
+.clear-btn {
+    margin-top: 15px;
+    background: black;
+    color: white;
+    padding: 10px;
+}
