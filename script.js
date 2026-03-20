@@ -10,11 +10,14 @@ function generateId() {
 
 function render(data = bookings) {
     bookingList.innerHTML = "";
+
     data.forEach((b, i) => {
         bookingList.innerHTML += `
         <tr>
             <td>${b.id}</td>
             <td>${b.name}</td>
+            <td>${b.age}</td>
+            <td>${b.idproof}</td>
             <td>${b.center}</td>
             <td>${b.date}</td>
             <td>${b.slot}</td>
@@ -26,31 +29,44 @@ function render(data = bookings) {
                 <button class="status-btn" onclick="toggleStatus(${i})">Toggle</button>
                 <button class="delete-btn" onclick="deleteBooking(${i})">Delete</button>
             </td>
-        </tr>
-        `;
+        </tr>`;
     });
 }
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const age = age.value;
+    const name = document.getElementById("name").value;
+    const age = parseInt(document.getElementById("age").value);
+    const idproof = document.getElementById("idproof").value;
+    const center = document.getElementById("center").value;
+    const date = document.getElementById("date").value;
+    const slot = document.getElementById("slot").value;
+
     if (age < 18) {
-        alert("Not eligible");
+        alert("Not eligible (Age must be 18+)");
+        return;
+    }
+
+    if (!center || !slot) {
+        alert("Please select center and slot");
         return;
     }
 
     const booking = {
         id: generateId(),
-        name: name.value,
-        center: center.value,
-        date: date.value,
-        slot: slot.value,
+        name,
+        age,
+        idproof,
+        center,
+        date,
+        slot,
         status: "Not Vaccinated"
     };
 
     bookings.push(booking);
     localStorage.setItem("bookings", JSON.stringify(bookings));
+
     form.reset();
     render();
 });
@@ -60,6 +76,7 @@ function toggleStatus(i) {
         bookings[i].status === "Vaccinated"
             ? "Not Vaccinated"
             : "Vaccinated";
+
     localStorage.setItem("bookings", JSON.stringify(bookings));
     render();
 }
@@ -80,23 +97,28 @@ function clearAll() {
 
 function printCert(i) {
     const b = bookings[i];
+
     const win = window.open("", "", "width=600,height=400");
     win.document.write(`
         <h2>VACCINATION CERTIFICATE</h2>
         <p><b>Name:</b> ${b.name}</p>
+        <p><b>Age:</b> ${b.age}</p>
         <p><b>Center:</b> ${b.center}</p>
         <p><b>Date:</b> ${b.date}</p>
         <p><b>Status:</b> ${b.status}</p>
         <br><p>✔ Government Approved</p>
     `);
+
     win.print();
 }
 
 searchInput.addEventListener("input", () => {
     const value = searchInput.value.toLowerCase();
+
     const filtered = bookings.filter(b =>
         b.name.toLowerCase().includes(value)
     );
+
     render(filtered);
 });
 
